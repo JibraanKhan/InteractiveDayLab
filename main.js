@@ -96,12 +96,12 @@ var initialize = function(data, day) {
             var rect = d3.select(this);
             var rect_parent = d3.select(this.parentNode);
             var grade = d.grade;
-            var tooltip_width = xScale.bandwidth() + 20
             var name = d.name;
             var mouse_pos = d3.mouse(this);
             var m_x = mouse_pos[0];
             var m_y = mouse_pos[1];
-            var tooltip_height = heightScale(25)
+            var tooltip_height = heightScale(40)
+            var tooltip_width = xScale.bandwidth() + 100
             rect.attr('height', heightScale(grade + 1))
                 .attr('y', h - rect.attr('height') + margins.top)
 
@@ -117,16 +117,18 @@ var initialize = function(data, day) {
             var tooltip = rect_parent.append('g')
                 .classed('tooltip', true)
             var base_tip = tooltip.append('rect')
-                .attr('x', m_x) // rect.attr('x') - tooltip_width/2
+                .attr('x', Math.min(m_x, w - tooltip_width/2)) // rect.attr('x') - tooltip_width/2
                 .attr('y', starting_y)
                 .attr('width', tooltip_width)
                 .attr('height', tooltip_height)
                 .attr('fill', '#c17b30')
+                .attr('stroke', 'black')
+                .attr('stroke-width', 5)
                 .style('pointer-events', 'none')
                 .classed('Tooltip', true)
                 .attr('opacity', 0)
                 .style('z-index', 10);
-
+            console.log("Mouse's X:", m_x, '\nWidth:', w, '\n', Math.min(m_x, w - tooltip_width))
             var texts = ['Student: ' + name,
                 'Grade: ' + grade
             ]
@@ -134,8 +136,9 @@ var initialize = function(data, day) {
                 .data(texts)
                 .enter()
                 .append('text')
-                .attr('x', m_x) //rect.attr('x') - tooltip_width/2
+                .attr('x', Math.min(m_x, w - tooltip_width/2) + tooltip_width/8) //rect.attr('x') - tooltip_width/2
                 .attr('stroke', 'black')
+                .attr('font-size', 24)
                 .attr('y', starting_y) // m_y + (tooltip_height)/2
                 .text(function(d) {
                     return d;
@@ -143,6 +146,7 @@ var initialize = function(data, day) {
                 .style('pointer-events', 'none')
                 .attr('opacity', 0)
                 .classed('Info', true)
+
             base_tip.transition()
                 .attr('y', Math.min(m_y, h - (tooltip_height / 2)))
                 .attr('opacity', 1);
@@ -162,6 +166,7 @@ var initialize = function(data, day) {
             var m_x = mouse_pos[0];
             var m_y = mouse_pos[1];
 
+
             rect.attr('height', heightScale(d.grade - 1))
                 .attr('y', h - rect.attr('height') + margins.top)
 
@@ -169,7 +174,7 @@ var initialize = function(data, day) {
             var base = tooltip.select('.Tooltip')
             var texts = tooltip.selectAll('.Info');
             var tooltip_height = heightScale(25)
-            var tooltip_width = xScale.bandwidth() + 20
+            var tooltip_width = xScale.bandwidth() + 50
 
             if ((Math.abs(m_y - scr.h)) < (m_y)) {
                 ending_y = scr.h + tooltip_height;
