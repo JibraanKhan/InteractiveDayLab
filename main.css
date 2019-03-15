@@ -1,0 +1,44 @@
+.ButtonHolder{
+  width: 15%;
+  float: left;
+}
+
+.tooltip, .Tooltip, .Info{
+  z-index: 10;
+}
+
+line, path{
+  color: #4286f4;
+}
+
+text{
+  color: #4286f4;
+}
+
+h1{
+  color: #4286f4;
+}
+
+body{
+  background-color: #080F15;
+}
+
+div > img[class*='button']{
+  width:100%;
+  height:100%;
+}
+
+.button {
+  transform: rotate(0deg);
+  transition: transform 1s linear;
+}
+
+.button0-tran {
+  transform: rotate(360deg);
+  transition: transform 3s linear;
+}
+
+
+.SVG{
+  float: left;
+}
