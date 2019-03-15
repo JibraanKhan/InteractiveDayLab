@@ -79,7 +79,8 @@ var initialize = function(data, day) {
         .ticks(5);
     var special_ind = 0;
     var delay = 1000;
-
+// Perhaps the mouse has a .move function that you can use to make the tooltip
+// stick next to the mouse at all times?
     students.append('rect')
         .attr('x', function(d, i) {
             return xScale(i);
