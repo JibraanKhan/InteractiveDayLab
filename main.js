@@ -121,7 +121,7 @@ var initialize = function(data, day) {
                 .attr('y', starting_y)
                 .attr('width', tooltip_width)
                 .attr('height', tooltip_height)
-                .attr('fill', '#c17b30')
+                .attr('fill', 'azure')
                 .attr('stroke', 'black')
                 .attr('stroke-width', 5)
                 .style('pointer-events', 'none')

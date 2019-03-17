@@ -3,10 +3,6 @@
   float: left;
 }
 
-.tooltip, .Tooltip, .Info{
-  z-index: 10;
-}
-
 line, path{
   color: #4286f4;
 }
